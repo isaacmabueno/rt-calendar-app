@@ -95,7 +95,7 @@ body {
 }
 
 .day-cell:nth-child(-n+4) {
-  font-size: 0;
+  color: #fff;
 }
 
 .edit-events {
@@ -156,6 +156,7 @@ select {
   border-color: transparent;
   height: 6rem;
   padding: 3px;
+  border-color: #efefef;
 }
 
 .date-cell {
