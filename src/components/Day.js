@@ -12,7 +12,7 @@ class Day extends Component {
         if (this.props.isPast) {
             this.dayCellClasses += " disabled-cell"
         } else if (this.props.isNull) {
-            this.daycellClasses += " testtttt"
+            this.daycellClasses += " hide-cell"
         } else {
             this.dayCellClasses += " date-cell"
         }
