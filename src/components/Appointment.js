@@ -9,16 +9,16 @@ class Appointment extends Component {
         this.state = { selectingStart: false, selectingEnd: false }
         this.startAppt = this.startAppt.bind(this);
         this.selectStart = this.selectStart.bind(this);
-        this.changeStart = this.ChangeStart.bind(this);
+        this.changeStart = this.changeStart.bind(this);
         this.getEnd = this.getEnd.bind(this);
         this.selectEnd = this.selectEnd.bind(this);
-        this.changeEnd = this.ChangeEnd.bind(this);
+        this.changeEnd = this.changeEnd.bind(this);
         this.deleteAppointment = this.deleteAppointment.bind(this);
     }
 
     startAppt() {
         if (this.state.selectingStart) {
-            return (this.getSelector(this.ChangeStart, this.props.start));
+            return (this.getSelector(this.changeStart, this.props.start));
         } else {
             return (<span onClick={this.selectStart}>{labels[this.props.start]}</span>);
         }
@@ -26,14 +26,14 @@ class Appointment extends Component {
     selectStart() {
         this.setState({ selectingStart: true });
     }
-    ChangeStart(e) {
+    changeStart(e) {
         this.props.editAppointment(this.props.name, e.target.value, this.props.end);
         this.setState({ selectingStart: false });
     }
 
     getEnd() {
         if (this.state.selectingEnd) {
-            return (this.getSelector(this.ChangeEnd, this.props.end));
+            return (this.getSelector(this.changeEnd, this.props.end));
         } else {
             return (<span onClick={this.selectEnd}>{labels[this.props.end]}</span>);
         }
@@ -42,7 +42,7 @@ class Appointment extends Component {
         this.setState({ selectingEnd: true });
     }
 
-    ChangeEnd(e) {
+    changeEnd(e) {
         this.props.editAppointment(this.props.name, this.props.start, e.target.value);
         this.setState({ selectingEnd: false });
     }
