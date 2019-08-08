@@ -51,8 +51,8 @@ body {
 }
 
 .logo img {
-  width: 10rem;
-  margin: 1rem 0;
+  width: 8rem;
+  margin: 1rem 0 0;
 }
 
 .logo {
@@ -92,6 +92,10 @@ body {
   justify-content: center !important;
   align-content: center !important;
   width: calc(100% / 7) !important;
+}
+
+.day-cell:nth-child(-n+4) {
+  font-size: 0;
 }
 
 .edit-events {
