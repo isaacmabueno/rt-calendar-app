@@ -14,7 +14,7 @@ class AppointmentScheduler extends Component {
         this.toggleOpenClose = this.toggleOpenClose.bind(this);
         this.appointmentButton = this.appointmentButton.bind(this);
         this.reserveAppointment = this.reserveAppointment.bind(this);
-        this.unreserveAppointment = this.unreserveAppointment.bind(this);
+        this.removeAppointment = this.removeAppointment.bind(this);
         this.editAppointment = this.editAppointment.bind(this);
         this.timeSelector = this.timeSelector.bind(this);
     }
@@ -39,15 +39,15 @@ class AppointmentScheduler extends Component {
 
     checkValidTimes(start, end) {
         if (start === 25 || start === 26) {
-            alert("ERROR: Select a Start Time");
+            alert("Oops, you must select a start time before booking");
             return false;
         }
         if (end === 25 || end === 26) {
-            alert("ERROR: Select an End Time");
+            alert("Oops, you must select an end time before booking");
             return false;
         }
         if (end < start) {
-            alert("ERROR: End must be after Start");
+            alert("Your times don't make sense. Please check again before booking an appointment!");
             return false;
         }
         return true;
@@ -80,7 +80,7 @@ class AppointmentScheduler extends Component {
         this.setState({ appointments: newAppointments, appointmentHours: reserved, currStart: 25, currEnd: 26 });
     }
 
-    unreserveAppointment(name, then = null) {
+    removeAppointment(name, then = null) {
         let start = this.state.appointments[name].start;
         let end = this.state.appointments[name].end;
         let reserved = this.state.appointmentHours.slice();
@@ -104,7 +104,7 @@ class AppointmentScheduler extends Component {
                 editAppointment={this.editAppointment}
                 start={this.state.appointments[key].start}
                 end={this.state.appointments[key].end}
-                removeAppointment={this.unreserveAppointment} />)
+                removeAppointment={this.removeAppointment} />)
         }
         return appointments;
     }
@@ -113,7 +113,7 @@ class AppointmentScheduler extends Component {
         if (!this.checkValidTimes(parseInt(newStart, 10), parseInt(newEnd, 10))) {
             return;
         }
-        this.unreserveAppointment(name, this.reserveAppointment.bind(this, parseInt(newStart, 10), parseInt(newEnd, 10)));
+        this.removeAppointment(name, this.reserveAppointment.bind(this, parseInt(newStart, 10), parseInt(newEnd, 10)));
     }
 
     timeSelector(func, val) {
